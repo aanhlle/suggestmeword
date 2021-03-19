@@ -8,7 +8,7 @@ Tired of unknown words when you read Japanese? How about subtracting all the har
 
 ## Install
 
-Make sure you have installed Node js.
+Make sure you have installed [Node.js](https://nodejs.org/).
 Open the terminal in the folder where you have downloaded SuggestMeWord, type the following:
 
 ```sh
@@ -26,3 +26,15 @@ node app.js
 ```
 
 Wait for the program to finish. The suggested words for you to learn will appear in `output.txt`
+
+## How it works?
+
+This script ultilises a Japanese parser called Kuromoji via a package [Kuromojin](https://www.npmjs.com/package/kuromojin) to split your text into small words.
+
+Then it fetches JLPT data from the Jisho API to determine words's difficulty.
+
+Finally, it outputs those difficult words (with meaning for your quick review) to `output.txt`.
+Current words' difficulty is set to JLPT N2 or below. You can change it easily by raising the threshold `if (max >= 3)` in `parseintojisho.js` file.
+
+
+e.g. `if (max >= 4)` to output words with JLPT N3 or below.
