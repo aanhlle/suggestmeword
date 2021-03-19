@@ -1,0 +1,23 @@
+{
+  "name": "personal-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "japanese",
+    "parser"
+  ],
+  "author": "aanhlle",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.22.0"
+  },
+  "dependencies": {
+    "kuromojin": "^2.1.1",
+    "node-fetch": "^2.6.1"
+  }
+}
