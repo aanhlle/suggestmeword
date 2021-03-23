@@ -34,7 +34,7 @@ This script ultilises a Japanese parser called Kuromoji via a package [Kuromojin
 Then it fetches JLPT data from the Jisho API to determine words's difficulty.
 
 Finally, it outputs those difficult words (with meaning for your quick review) to `output.txt`.
-Current words' difficulty is set to JLPT N2 or below. You can change it easily by raising the threshold `if (max >= 3)` in `parseintojisho.js` file.
+Current words' difficulty is set to JLPT N2 or below. You can change it easily by raising the threshold `if (max < 3) ` in `parseintojisho.js` file.
 
 
-e.g. `if (max >= 4)` to output words with JLPT N3 or below.
+e.g. `if (max < 4)` to output words with JLPT N3 or below.
