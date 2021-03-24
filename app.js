@@ -2,7 +2,8 @@ import { tokenize, getTokenizer } from "kuromojin";
 import fetch from "node-fetch";
 import fs, { read } from "fs";
 
-const text = fs.readFileSync("text.txt", "utf8");
+const unfiltered_text = fs.readFileSync("text.txt", "utf8").split('');
+const text = unfiltered_text.filter(c => (c.charCodeAt(0) > 12352 && c.charCodeAt(0) < 12544) || (c.charCodeAt(0) >= 19968 && c.charCodeAt(0) < 40960)).join('');
 let result = [];
 let tokenSet = new Set();
 
