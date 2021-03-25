@@ -3,6 +3,7 @@ import fetch from "node-fetch";
 import fs, { read } from "fs";
 
 const text = fs.readFileSync("text.txt", "utf8");
+
 let result = [];
 let tokenSet = new Set();
 
@@ -26,20 +27,26 @@ tokenize(text).then((results) => {
     tokenSet.add(token.surface_form);
   });
 
+  let filteredArray = [...tokenSet].filter(function (el) {
+    return !/[＜＞！「」（）“”、。’`\w\s\d]/u.test(el); //add to this list the character you want to filter out
+  });
+
   console.log("======Begin to find JLPT level for below items======");
 
-  console.log(`Tokenized items: ${[...tokenSet]}\n`);
+  console.log(`Tokenized items\n ${filteredArray}`);
 
-  Promise.all([...tokenSet].map(parseIntoJisho))
+  Promise.all(filteredArray.map(parseIntoJisho))
     .then((results) => {
       for (const result of results) {
         if (!result) continue;
-        // console.log(result);
+
         let [data, jlpt, reading, definition] = result;
 
         if (jlpt.length) {
           const jlptLevel = jlpt.flatMap((str) => str.match(/\d+/));
           const max = Math.max(...jlptLevel);
+
+          // edit this if you want another JLPT level threshold e.g max < 4 == JLPT N3 or below
           if (max < 3) {
             let output = data + "\t" + reading + "\t" + definition + "\n";
             fs.appendFileSync("output.txt", output);
